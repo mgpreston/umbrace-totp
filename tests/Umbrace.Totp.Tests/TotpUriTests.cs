@@ -80,7 +80,7 @@ public class TotpUriTests
         await Assert.That(uri.Algorithm).IsEqualTo(OtpAlgorithm.Sha1);
         await Assert.That(uri.Digits).IsEqualTo(6);
         await Assert.That(uri.Period).IsEqualTo(30);
-        await Assert.That(uri.Secret.ToArray()).IsEquivalentTo(s_secret);
+        await Assert.That(uri.Secret.ToArray().SequenceEqual(s_secret)).IsTrue();
     }
 
     [Test]
@@ -149,7 +149,7 @@ public class TotpUriTests
         var uriUpper = TotpUri.Parse(upper);
         var uriLower = TotpUri.Parse(lower);
 
-        await Assert.That(uriUpper.Secret.ToArray()).IsEquivalentTo(uriLower.Secret.ToArray());
+        await Assert.That(uriUpper.Secret.ToArray().SequenceEqual(uriLower.Secret.ToArray())).IsTrue();
     }
 
     // ── Round-trip ────────────────────────────────────────────────────────────
@@ -172,7 +172,7 @@ public class TotpUriTests
         await Assert.That(parsed.Algorithm).IsEqualTo(original.Algorithm);
         await Assert.That(parsed.Digits).IsEqualTo(original.Digits);
         await Assert.That(parsed.Period).IsEqualTo(original.Period);
-        await Assert.That(parsed.Secret.ToArray()).IsEquivalentTo(original.Secret.ToArray());
+        await Assert.That(parsed.Secret.ToArray().SequenceEqual(original.Secret.ToArray())).IsTrue();
     }
 
     [Test]
@@ -183,7 +183,7 @@ public class TotpUriTests
 
         await Assert.That(parsed.AccountName).IsEqualTo(original.AccountName);
         await Assert.That(parsed.Issuer).IsNull();
-        await Assert.That(parsed.Secret.ToArray()).IsEquivalentTo(original.Secret.ToArray());
+        await Assert.That(parsed.Secret.ToArray().SequenceEqual(original.Secret.ToArray())).IsTrue();
     }
 
     [Test]
@@ -197,7 +197,7 @@ public class TotpUriTests
         var original = new TotpUri("alice@example.com", largeSecret);
         var parsed = TotpUri.Parse(original.ToString());
 
-        await Assert.That(parsed.Secret.ToArray()).IsEquivalentTo(largeSecret);
+        await Assert.That(parsed.Secret.ToArray().SequenceEqual(largeSecret)).IsTrue();
     }
 
     // ── ToTotpOptions ─────────────────────────────────────────────────────────
@@ -349,7 +349,7 @@ public class TotpUriTests
         // The six '=' characters exercise the padding-strip loop in Base32.Decode.
         string uriStr = "otpauth://totp/alice?secret=AA======";
         var uri = TotpUri.Parse(uriStr);
-        await Assert.That(uri.Secret.ToArray()).IsEquivalentTo(new byte[] { 0x00 });
+        await Assert.That(uri.Secret.ToArray().SequenceEqual(new byte[] { 0x00 })).IsTrue();
     }
 
     // ── Integration: URI → TotpGenerator ─────────────────────────────────────

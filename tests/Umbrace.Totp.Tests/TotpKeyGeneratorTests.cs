@@ -81,7 +81,7 @@ public class TotpKeyGeneratorTests
     {
         byte[] key1 = TotpKeyGenerator.GenerateKey();
         byte[] key2 = TotpKeyGenerator.GenerateKey();
-        await Assert.That(key1).IsNotEquivalentTo(key2);
+        await Assert.That(key1.SequenceEqual(key2)).IsFalse();
     }
 
     // ── Generated key works with TotpGenerator ────────────────────────────────
