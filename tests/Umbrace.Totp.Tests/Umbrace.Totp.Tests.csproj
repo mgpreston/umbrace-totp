@@ -4,6 +4,8 @@
     <!-- Required by TUnit / Microsoft.Testing.Platform v2 -->
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
   </PropertyGroup>
 
   <ItemGroup>
