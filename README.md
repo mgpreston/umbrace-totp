@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Umbrace.Totp.svg)](https://www.nuget.org/packages/Umbrace.Totp)
 [![CI](https://github.com/mgpreston/umbrace-totp/actions/workflows/ci.yml/badge.svg)](https://github.com/mgpreston/umbrace-totp/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/mgpreston/umbrace-totp/branch/main/graph/badge.svg)](https://codecov.io/gh/mgpreston/umbrace-totp)
+[![codecov](https://codecov.io/github/mgpreston/umbrace-totp/graph/badge.svg?token=JMOAQI1DSO)](https://codecov.io/github/mgpreston/umbrace-totp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 
