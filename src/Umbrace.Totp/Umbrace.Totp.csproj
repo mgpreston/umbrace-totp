@@ -15,6 +15,7 @@
     <PackageTags>totp;otp;mfa;2fa;rfc6238;authenticator;hotp;rfc4226</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
 </Project>

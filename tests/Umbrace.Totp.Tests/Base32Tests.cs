@@ -40,21 +40,21 @@ public class Base32Tests
     [Test]
     public async Task Decode_EmptyString_ReturnsEmptyArray()
     {
-        await Assert.That(Decode("")).IsEquivalentTo(Array.Empty<byte>());
+        await Assert.That(Decode("").SequenceEqual(Array.Empty<byte>())).IsTrue();
     }
 
     [Test]
     public async Task Decode_AllPadding_ReturnsEmptyArray()
     {
         // All padding characters trim to empty, which decodes to nothing.
-        await Assert.That(Decode("========")).IsEquivalentTo(Array.Empty<byte>());
+        await Assert.That(Decode("========").SequenceEqual(Array.Empty<byte>())).IsTrue();
     }
 
     [Test]
     public async Task Decode_WithPadding_StripsAndDecodes()
     {
         // "AA======" is padded Base32 for a single 0x00 byte.
-        await Assert.That(Decode("AA======")).IsEquivalentTo(new byte[] { 0x00 });
+        await Assert.That(Decode("AA======").SequenceEqual(new byte[] { 0x00 })).IsTrue();
     }
 
     [Test]
@@ -62,7 +62,7 @@ public class Base32Tests
     {
         byte[] upper = Decode("GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ");
         byte[] lower = Decode("gezdgnbvgy3tqojqgezdgnbvgy3tqojq");
-        await Assert.That(upper).IsEquivalentTo(lower);
+        await Assert.That(upper.SequenceEqual(lower)).IsTrue();
     }
 
     [Test]
@@ -90,7 +90,7 @@ public class Base32Tests
         byte[] input = new byte[130];
         for (int i = 0; i < input.Length; i++) input[i] = (byte)(i * 7 + 13);
 
-        await Assert.That(Decode(Base32.Encode(input))).IsEquivalentTo(input);
+        await Assert.That(Decode(Base32.Encode(input)).SequenceEqual(input)).IsTrue();
     }
 
     [Test]
@@ -107,7 +107,7 @@ public class Base32Tests
         for (int i = 0; i < length; i++) input[i] = (byte)(i * 7 + 13);
 
         byte[] result = Decode(Base32.Encode(input));
-        await Assert.That(result).IsEquivalentTo(input);
+        await Assert.That(result.SequenceEqual(input)).IsTrue();
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
