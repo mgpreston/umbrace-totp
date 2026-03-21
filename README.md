@@ -37,6 +37,17 @@ byte[] secret256 = TotpKeyGenerator.GenerateKey(OtpAlgorithm.Sha256);   // 32 by
 byte[] secret512 = TotpKeyGenerator.GenerateKey(OtpAlgorithm.Sha512);   // 64 bytes
 ```
 
+For zero-allocation scenarios — write directly into a caller-provided buffer:
+
+```csharp
+Span<byte> key = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength()];
+TotpKeyGenerator.TryGenerateKey(key);
+
+// With an explicit algorithm
+Span<byte> key256 = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength(OtpAlgorithm.Sha256)];
+TotpKeyGenerator.TryGenerateKey(key256, OtpAlgorithm.Sha256);
+```
+
 ### Generate a code
 
 ```csharp
