@@ -13,7 +13,7 @@ jobs:
   publish-nuget:
     name: Publish to NuGet
     runs-on: ubuntu-latest
-    environment: production
+    environment: release
     permissions:
       id-token: write
       contents: read
