@@ -12,76 +12,10 @@ jobs:
   release-please:
     name: Release Please
     runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
 
     steps:
       - uses: googleapis/release-please-action@v4
-        id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
-
-  publish-nuget:
-    name: Publish to NuGet
-    needs: release-please
-    if: needs.release-please.outputs.release_created == 'true'
-    runs-on: ubuntu-latest
-    environment: production
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - name: Checkout release tag
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ needs.release-please.outputs.tag_name }}
-          fetch-depth: 0  # Full history required for Source Link
-
-      - name: Setup .NET 10
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: "10.0.x"
-
-      - name: Restore
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Test
-        run: >
-          dotnet test
-          --project tests/Umbrace.Totp.Tests/Umbrace.Totp.Tests.csproj
-          --configuration Release
-          --no-build
-
-      - name: Pack
-        run: >
-          dotnet pack src/Umbrace.Totp/Umbrace.Totp.csproj
-          --configuration Release
-          --no-build
-          --output ./nupkgs
-
-      - name: NuGet login
-        uses: NuGet/login@v1
-        id: nuget-login
-        with:
-          user: ${{ secrets.NUGET_USER }}
-
-      - name: Push to NuGet.org
-        run: >
-          dotnet nuget push "./nupkgs/*.nupkg"
-          --source https://api.nuget.org/v3/index.json
-          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
-          --skip-duplicate
-
-      - name: Push symbols to NuGet.org
-        run: >
-          dotnet nuget push "./nupkgs/*.snupkg"
-          --source https://api.nuget.org/v3/index.json
-          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
-          --skip-duplicate

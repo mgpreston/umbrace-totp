@@ -1,0 +1,66 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-nuget:
+    name: Publish to NuGet
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0  # Full history required for Source Link
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: >
+          dotnet test
+          --project tests/Umbrace.Totp.Tests/Umbrace.Totp.Tests.csproj
+          --configuration Release
+          --no-build
+
+      - name: Pack
+        run: >
+          dotnet pack src/Umbrace.Totp/Umbrace.Totp.csproj
+          --configuration Release
+          --no-build
+          --output ./nupkgs
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet.org
+        run: >
+          dotnet nuget push "./nupkgs/*.nupkg"
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          --skip-duplicate
+
+      - name: Push symbols to NuGet.org
+        run: >
+          dotnet nuget push "./nupkgs/*.snupkg"
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          --skip-duplicate
