@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Umbrace.Totp.Tests" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>Umbrace.Totp</PackageId>
+    <!-- x-release-please-start-version -->
+    <Version>0.1.0</Version>
+    <!-- x-release-please-end -->
+    <Description>A fully RFC 6238 compliant, low-allocation TOTP library for .NET.</Description>
+    <PackageTags>totp;otp;mfa;2fa;rfc6238;authenticator;hotp;rfc4226</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

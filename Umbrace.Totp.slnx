@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Umbrace.Totp/Umbrace.Totp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Umbrace.Totp.Tests/Umbrace.Totp.Tests.csproj" />
+  </Folder>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/Umbrace.Totp.Benchmarks/Umbrace.Totp.Benchmarks.csproj" />
+  </Folder>
+</Solution>

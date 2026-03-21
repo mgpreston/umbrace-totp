@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Required by TUnit / Microsoft.Testing.Platform v2 -->
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TUnit" Version="1.*" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.*" />
+    <ProjectReference Include="../../src/Umbrace.Totp/Umbrace.Totp.csproj" />
+  </ItemGroup>
+
+</Project>
