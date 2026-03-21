@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/mgpreston/umbrace-totp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
-    <DebugType>embedded</DebugType>
+    <DebugType>portable</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
