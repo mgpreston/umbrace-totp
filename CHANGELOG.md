@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/mgpreston/umbrace-totp/compare/v0.1.2...v0.1.3) (2026-03-22)
+
+
+### Features
+
+* add HKDF key derivation to TotpKeyGenerator (RFC 5869) ([#22](https://github.com/mgpreston/umbrace-totp/issues/22)) ([c28eb5e](https://github.com/mgpreston/umbrace-totp/commit/c28eb5eaed95392772e46453975db8e749bb101a))
+
 ## [0.1.2](https://github.com/mgpreston/umbrace-totp/compare/v0.1.1...v0.1.2) (2026-03-22)
 
 
