@@ -22,7 +22,7 @@ An [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238) / [RFC 4226](https:
 - Zero-allocation validation and span-based code generation
 - Trim-safe and Native AOT compatible
 - `TimeProvider` abstraction for testability
-- Cryptographically secure key generation
+- Cryptographically secure key generation and HKDF key derivation ([RFC 5869](https://www.rfc-editor.org/rfc/rfc5869))
 
 ## Installation
 
@@ -52,6 +52,29 @@ TotpKeyGenerator.TryGenerateKey(key);
 Span<byte> key256 = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength(OtpAlgorithm.Sha256)];
 TotpKeyGenerator.TryGenerateKey(key256, OtpAlgorithm.Sha256);
 ```
+
+#### Derive a key from a master secret
+
+For server-side deployments where storing a per-user secret is undesirable, derive
+secrets deterministically from a single master key and a per-user context:
+
+```csharp
+// Store this once; keep it secret
+byte[] masterKey = TotpKeyGenerator.GenerateKey();
+
+// Derive a per-user secret on demand — no per-user storage needed
+byte[] userSecret = TotpKeyGenerator.DeriveKey(masterKey, "user@example.com"u8);
+```
+
+For zero-allocation scenarios:
+
+```csharp
+Span<byte> destination = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength()];
+TotpKeyGenerator.TryDeriveKey(masterKey, "user@example.com"u8, destination);
+```
+
+The same master key and context always produce the same secret. The context should
+uniquely identify the user or account (e.g. a user ID or email address encoded as UTF-8).
 
 ---
 
