@@ -1,6 +1,7 @@
 # Umbrace.Totp
 
 [![NuGet](https://img.shields.io/nuget/v/Umbrace.Totp.svg)](https://www.nuget.org/packages/Umbrace.Totp)
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/download/dotnet/10.0)
 [![CI](https://github.com/mgpreston/umbrace-totp/actions/workflows/ci.yml/badge.svg)](https://github.com/mgpreston/umbrace-totp/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/mgpreston/umbrace-totp/graph/badge.svg?token=JMOAQI1DSO)](https://codecov.io/github/mgpreston/umbrace-totp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
