@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/mgpreston/umbrace-totp/compare/v0.1.3...v1.0.0) (2026-03-22)
+
+
+### Features
+
+* expose Base32 as a public API ([#24](https://github.com/mgpreston/umbrace-totp/issues/24)) ([a1715ca](https://github.com/mgpreston/umbrace-totp/commit/a1715ca221197388380ef16f67ce68b19afbcda5))
+
+
+### Miscellaneous Chores
+
+* release v1.0.0 ([#26](https://github.com/mgpreston/umbrace-totp/issues/26)) ([7450302](https://github.com/mgpreston/umbrace-totp/commit/745030204e3c2291897d183b8387aa71ae65b1ba))
+
 ## [0.1.3](https://github.com/mgpreston/umbrace-totp/compare/v0.1.2...v0.1.3) (2026-03-22)
 
 
