@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-using Umbrace.Totp.Internal;
-
 namespace Umbrace.Totp;
 
 /// <summary>
@@ -116,7 +114,7 @@ public sealed class HotpUri
             sb.Append(escapedIssuer).Append(':');
         sb.Append(escapedAccount);
 
-        sb.Append("?secret=").Append(Base32.Encode(_secret));
+        sb.Append("?secret=").Append(Base32.EncodeToString(_secret));
 
         // Per the spec, issuer appears in both the label and the query string.
         if (escapedIssuer is not null)
@@ -218,9 +216,9 @@ public sealed class HotpUri
             return false;
         }
 
-        int maxSecretLength = secretStr.Length * 5 / 8;
+        int maxSecretLength = Base32.GetMaxDecodedLength(secretStr.Length);
         Span<byte> secretBuf = maxSecretLength <= 128 ? stackalloc byte[maxSecretLength] : new byte[maxSecretLength];
-        if (!Base32.TryDecode(secretStr, secretBuf, out int secretLength))
+        if (!Base32.TryDecodeFromChars(secretStr, secretBuf, out int secretLength))
         {
             error = "Invalid Base32 in 'secret' parameter.";
             return false;
