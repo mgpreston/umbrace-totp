@@ -9,7 +9,7 @@
     <IsPackable>true</IsPackable>
     <PackageId>Umbrace.Totp</PackageId>
     <!-- x-release-please-start-version -->
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <!-- x-release-please-end -->
     <Description>A fully RFC 6238 compliant, low-allocation TOTP library for .NET.</Description>
     <PackageTags>totp;otp;mfa;2fa;rfc6238;authenticator;hotp;rfc4226</PackageTags>

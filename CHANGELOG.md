@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/mgpreston/umbrace-totp/compare/v0.1.1...v0.1.2) (2026-03-22)
+
+
+### Features
+
+* expose public HOTP API (RFC 4226) ([#14](https://github.com/mgpreston/umbrace-totp/issues/14)) ([9b05403](https://github.com/mgpreston/umbrace-totp/commit/9b05403d9b0be3f55542574bb3945e9db8475c1f))
+
 ## [0.1.1](https://github.com/mgpreston/umbrace-totp/compare/v0.1.0...v0.1.1) (2026-03-21)
 
 
