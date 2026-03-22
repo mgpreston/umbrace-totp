@@ -18,6 +18,7 @@ An [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238) / [RFC 4226](https:
 - Replay protection via `TimeStepMatched` (TOTP) and `NextCounter` (HOTP)
 - `otpauth://` URI construction and parsing for both `totp` and `hotp` types ([Key Uri Format](https://github.com/google/google-authenticator/wiki/Key-Uri-Format))
 - Zero-allocation validation and span-based code generation
+- Trim-safe and Native AOT compatible
 - `TimeProvider` abstraction for testability
 - Cryptographically secure key generation
 
