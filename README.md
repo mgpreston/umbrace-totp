@@ -45,7 +45,7 @@ byte[] secret512 = TotpKeyGenerator.GenerateKey(OtpAlgorithm.Sha512);   // 64 by
 For zero-allocation scenarios — write directly into a caller-provided buffer:
 
 ```csharp
-Span<byte> key = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength()];
+Span<byte> key = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength(OtpAlgorithm.Sha1)];
 TotpKeyGenerator.TryGenerateKey(key);
 
 // With an explicit algorithm
@@ -69,7 +69,7 @@ byte[] userSecret = TotpKeyGenerator.DeriveKey(masterKey, "user@example.com"u8);
 For zero-allocation scenarios:
 
 ```csharp
-Span<byte> destination = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength()];
+Span<byte> destination = stackalloc byte[TotpKeyGenerator.RecommendedKeyLength(OtpAlgorithm.Sha1)];
 TotpKeyGenerator.TryDeriveKey(masterKey, "user@example.com"u8, destination);
 ```
 

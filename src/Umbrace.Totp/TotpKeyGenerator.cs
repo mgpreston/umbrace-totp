@@ -68,6 +68,12 @@ public static class TotpKeyGenerator
     /// individual secrets.
     /// </para>
     /// <para>
+    /// <strong>Security:</strong> Because all per-user secrets are derived from a single
+    /// master key, a compromise of that master key simultaneously exposes the OTP secrets
+    /// of every user. Protect the master key with at least the same rigour as a database
+    /// credential or signing key (e.g. a secrets manager or HSM).
+    /// </para>
+    /// <para>
     /// Use <see cref="TryDeriveKey"/> to write the derived key directly into a caller-supplied
     /// buffer without allocating a result array.
     /// </para>
@@ -128,6 +134,12 @@ public static class TotpKeyGenerator
     /// rather than a per-user secret. The per-user TOTP or HOTP secret is re-derived on
     /// demand from the master key and the user's identifier, eliminating the need to persist
     /// individual secrets.
+    /// </para>
+    /// <para>
+    /// <strong>Security:</strong> Because all per-user secrets are derived from a single
+    /// master key, a compromise of that master key simultaneously exposes the OTP secrets
+    /// of every user. Protect the master key with at least the same rigour as a database
+    /// credential or signing key (e.g. a secrets manager or HSM).
     /// </para>
     /// <para>
     /// This overload writes the derived key directly into <paramref name="destination"/>,

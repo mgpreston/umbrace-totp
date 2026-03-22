@@ -120,8 +120,7 @@ public class KeyDerivationTests
     [Test]
     public async Task TryDeriveKey_InvalidAlgorithm_ThrowsArgumentOutOfRangeException()
     {
-        // Use a large heap-allocated buffer so the algorithm check is reached.
-        // stackalloc spans cannot be captured in lambdas.
+        // stackalloc spans cannot be captured in lambdas — use a heap-allocated array.
         byte[] destination = new byte[64];
 
         await Assert.That(() => TotpKeyGenerator.TryDeriveKey(MasterKey, "user@example.com"u8, destination, (OtpAlgorithm)99))
