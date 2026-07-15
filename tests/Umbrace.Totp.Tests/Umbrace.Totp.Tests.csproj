@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TUnit" Version="1.5*" />
+    <PackageReference Include="TUnit" Version="1.6*" />
     <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.*" />
     <ProjectReference Include="../../src/Umbrace.Totp/Umbrace.Totp.csproj" />
   </ItemGroup>
